@@ -110,7 +110,7 @@ d-i partman/confirm_nooverwrite                             boolean     true
 ### Boot loader installation
 d-i grub-installer/only_debian                              boolean     true
 d-i grub-installer/with_other_os                            boolean     true
-d-i grub-installer/bootdev                                  string      /dev/mmcblk1
+d-i grub-installer/bootdev                                  string      default
 
 ### Finish installation
 d-i finish-install/reboot_in_progress                       note
