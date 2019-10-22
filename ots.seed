@@ -60,24 +60,24 @@ d-i partman-md/device_remove_md                             boolean     true
 d-i partman-lvm/confirm                                     boolean     true
 d-i partman-lvm/confirm_nooverwrite                         boolean     true
 
-d-i partman-basicfilesystems/no_swap boolean false
-d-i partman-efi/non_efi_system boolean true
-d-i partman-basicfilesystems/choose_label string gpt
-d-i partman-basicfilesystems/default_label string gpt
-d-i partman-partitioning/choose_label string gpt
-d-i partman-partitioning/default_label string gpt
-d-i partman/choose_label string gpt
-d-i partman/default_label string gpt
-d-i partman-auto/choose_recipe select efi-boot-root-var-swap
-d-i partman-auto/expert_recipe string \
+d-i partman-basicfilesystems/no_swap                        boolean     false
+d-i partman-efi/non_efi_system                              boolean     true
+d-i partman-basicfilesystems/choose_label                   string      gpt
+d-i partman-basicfilesystems/default_label                  string      gpt
+d-i partman-partitioning/choose_label                       string      gpt
+d-i partman-partitioning/default_label                      string      gpt
+d-i partman/choose_label                                    string      gpt
+d-i partman/default_label                                   string      gpt
+d-i partman-auto/choose_recipe                              select      efi-boot-root-var-swap
+d-i partman-auto/expert_recipe                              string \
 efi-boot-root-var-swap :: \
-538 538 1075 free \
+538 538 1075 fat32 \
 $iflabel{ gpt } \
 $reusemethod{ } \
 method{ efi } \
 format{ } \
 . \
-512 512 1024 ext4 \
+512 512 1024 ext2 \
 $defaultignore{ } \
 method{ format } format{ } \
 use_filesystem{ } filesystem{ ext2 } \
