@@ -22,6 +22,7 @@ d-i netcfg/get_domain                                       string      {{hostna
 
 ### Mirror setup
 d-i mirror/http/mirror                                      select      us.archive.ubuntu.com
+d-i mirror/http/proxy                                       string
 
 ### User account setup
 d-i passwd/root-login                                       boolean     false
@@ -77,10 +78,10 @@ $reusemethod{ } \
 method{ efi } \
 format{ } \
 . \
-512 512 1024 ext2 \
+538 538 1075 ext4 \
 $defaultignore{ } \
 method{ format } format{ } \
-use_filesystem{ } filesystem{ ext2 } \
+use_filesystem{ } filesystem{ ext4 } \
 mountpoint{ /boot } \
 . \
 8192 10240 16384 ext4 \

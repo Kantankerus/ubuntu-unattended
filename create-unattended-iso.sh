@@ -222,7 +222,7 @@ cp -rT $tmp/$seed_file $tmp/iso_new/preseed/$seed_file
 # include firstrun script
 echo "
 # setup firstrun script
-d-i preseed/late_command                                    string      $late_command" >> $tmp/iso_new/preseed/$seed_file
+#d-i preseed/late_command                                    string      $late_command" >> $tmp/iso_new/preseed/$seed_file
 
 # generate the password hash
 pwhash=$(echo $password | mkpasswd -s -m sha-512)
