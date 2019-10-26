@@ -56,7 +56,7 @@ d-i pkgsel/updatedb                                         boolean     true
 d-i partman-auto/disk                                       string      /dev/mmcblk0
 d-i partman-auto/method                                     string      lvm
 d-i partman-auto-lvm/guided_size                            string      43GB
-#d-i partman-auto-lvm/new_vg_name                            string      root_vg
+d-i partman-auto-lvm/new_vg_name                            string      root_vg
 d-i partman/confirm_write_new_label                         boolean     true
 d-i partman-auto/purge_lvm_from_device                      boolean     true
 d-i partman-lvm/device_remove_lvm                           boolean     true
@@ -88,19 +88,22 @@ use_filesystem{ } filesystem{ ext4 } \
 mountpoint{ /boot } \
 . \
 8590 10738 17180 ext4 \
-$lvmok{ } lv_name{root_lv} \
+$lvmok{ } \
+in_vg{ root_vg } lv_name{ root_lv } \
 method{ format } format{ } \
 use_filesystem{ } filesystem{ ext4 } \
 mountpoint{ / } \
 . \
 8590 10738 17180 ext4 \
-$lvmok{ } lv_name{var_lv} \
+$lvmok{ } \
+in_vg{ root_vg} lv_name{ var_lv } \
 method{ format } format{ } \
 use_filesystem{ } filesystem{ ext4 } \
 mountpoint{ /var } \
 . \
 8590 8590 8590 linux-swap \
-$lvmok{ } lv_name{swap_lv}\
+$lvmok{ } \
+in_vg{ root_vg } lv_name{ swap_lv }\
 $reusemethod{ } \
 method{ swap } format{ } \
 .
