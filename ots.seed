@@ -56,7 +56,7 @@ d-i pkgsel/updatedb                                         boolean     true
 d-i partman-auto/disk                                       string      /dev/mmcblk0
 d-i partman-auto/method                                     string      lvm
 d-i partman-auto-lvm/guided_size                            string      43GB
-d-i partman-auto-lvm/new_vg_name                            string      root_vg
+#d-i partman-auto-lvm/new_vg_name                            string      root_vg
 d-i partman/confirm_write_new_label                         boolean     true
 d-i partman-auto/purge_lvm_from_device                      boolean     true
 d-i partman-lvm/device_remove_lvm                           boolean     true
