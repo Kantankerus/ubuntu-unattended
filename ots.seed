@@ -56,7 +56,6 @@ d-i pkgsel/updatedb                                         boolean     true
 d-i partman-auto/disk                                       string      /dev/mmcblk0
 d-i partman-auto/method                                     string      lvm
 d-i partman-auto-lvm/guided_size                            string      43GB
-d-i partman-auto-lvm/new_vg_name                            string      root_vg
 d-i partman/confirm_write_new_label                         boolean     true
 d-i partman-auto/purge_lvm_from_device                      boolean     true
 d-i partman-lvm/device_remove_lvm                           boolean     true
@@ -72,6 +71,7 @@ d-i partman-partitioning/choose_label                       string      gpt
 d-i partman-partitioning/default_label                      string      gpt
 d-i partman/choose_label                                    string      gpt
 d-i partman/default_label                                   string      gpt
+d-i partman-auto-lvm/new_vg_name                            string      root_vg
 d-i partman-auto/choose_recipe                              select      efi-boot-root-var-swap
 d-i partman-auto/expert_recipe                              string \
 efi-boot-root-var-swap :: \
@@ -103,7 +103,7 @@ mountpoint{ /var } \
 . \
 8590 8590 8590 linux-swap \
 $lvmok{ } \
-in_vg{ root_vg } lv_name{ swap_lv }\
+in_vg{ root_vg } lv_name{ swap_lv } \
 $reusemethod{ } \
 method{ swap } format{ } \
 .
