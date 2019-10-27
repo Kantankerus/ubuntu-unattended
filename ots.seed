@@ -47,7 +47,7 @@ d-i apt-setup/backports                                     boolean     true
 d-i apt-setup/services-select                               multiselect security
 d-i apt-setup/security_host                                 string      security.ubuntu.com
 d-i apt-setup/security_path                                 string      /ubuntu
-tasksel tasksel/first                                       multiselect Basic Ubuntu server
+tasksel tasksel/first                                       multiselect standard, ubuntu-desktop
 d-i pkgsel/upgrade                                          select      safe-upgrade
 d-i pkgsel/update-policy                                    select      unattended-upgrades 
 d-i pkgsel/updatedb                                         boolean     true
@@ -113,9 +113,6 @@ d-i partman/choose_partition                                select      finish
 d-i partman-md/confirm                                      boolean     true
 d-i partman/confirm                                         boolean     true
 d-i partman/confirm_nooverwrite                             boolean     true
-
-### Default tasks
-tasksel tasksel/first                                       multiselect ubuntu-desktop
 
 ### Boot loader installation
 d-i grub-installer/only_debian                              boolean     true
