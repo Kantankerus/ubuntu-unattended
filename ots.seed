@@ -47,7 +47,7 @@ d-i apt-setup/backports                                     boolean     true
 d-i apt-setup/services-select                               multiselect security
 d-i apt-setup/security_host                                 string      security.ubuntu.com
 d-i apt-setup/security_path                                 string      /ubuntu
-tasksel tasksel/first                                       multiselect standard, ubuntu-desktop
+tasksel tasksel/first                                       multiselect Basic Ubuntu server, Ubuntu desktop
 d-i pkgsel/upgrade                                          select      safe-upgrade
 d-i pkgsel/update-policy                                    select      unattended-upgrades 
 d-i pkgsel/updatedb                                         boolean     true
