@@ -114,6 +114,9 @@ d-i partman-md/confirm                                      boolean     true
 d-i partman/confirm                                         boolean     true
 d-i partman/confirm_nooverwrite                             boolean     true
 
+### Default tasks
+tasksel tasksel/first                                       multiselect standard, ubuntu-desktop
+
 ### Boot loader installation
 d-i grub-installer/only_debian                              boolean     true
 d-i grub-installer/with_other_os                            boolean     true
