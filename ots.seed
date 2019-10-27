@@ -89,21 +89,21 @@ mountpoint{ /boot } \
 . \
 8590 10738 17180 ext4 \
 $lvmok{ } \
-in_vg{ root_vg } lv_name{ root_lv } \
+lv_name{ root_lv } \
 method{ format } format{ } \
 use_filesystem{ } filesystem{ ext4 } \
 mountpoint{ / } \
 . \
 8590 10738 17180 ext4 \
 $lvmok{ } \
-in_vg{ root_vg} lv_name{ var_lv } \
+lv_name{ var_lv } \
 method{ format } format{ } \
 use_filesystem{ } filesystem{ ext4 } \
 mountpoint{ /var } \
 . \
 8590 8590 8590 linux-swap \
 $lvmok{ } \
-in_vg{ root_vg } lv_name{ swap_lv } \
+lv_name{ swap_lv } \
 $reusemethod{ } \
 method{ swap } format{ } \
 .
