@@ -128,5 +128,11 @@ d-i debian-installer/exit/halt                              boolean     false
 d-i debian-installer/exit/poweroff                          boolean     false
 
 ### Preseeding other packages
+d-i preseed/late_command string \
+in-target curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -; \
+apt-install nodejs; \
+in-target wget https://apt.puppet.com/puppet6-release-bionic.deb; \
+in-target dpkg -i puppet6-release-bionic.deb; \
+apt-install puppet-agent
 
 ### Advanced options
