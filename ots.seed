@@ -48,10 +48,23 @@ d-i apt-setup/services-select                               multiselect security
 d-i apt-setup/security_host                                 string      security.ubuntu.com
 d-i apt-setup/security_path                                 string      /ubuntu
 tasksel tasksel/first                                       multiselect server
-d-i pkgsel/include                                          string      ubuntu-desktop
+d-i pkgsel/include                                          string      ubuntu-desktop apt-transport-https
 d-i pkgsel/upgrade                                          select      safe-upgrade
 d-i pkgsel/update-policy                                    select      unattended-upgrades 
 d-i pkgsel/updatedb                                         boolean     true
+
+### Additional repositories
+d-i apt-setup/local0/repository string deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+d-i apt-setup/local0/comment string Docker
+d-i apt-setup/local0/key string https://download.docker.com/linux/ubuntu/gpg
+
+#d-i apt-setup/local1/repository string deb https://deb.nodesource.com/node_13.x bionic main
+#d-i apt-setup/local1/comment string NodeJS
+#d-i apt-setup/local1/key string http://pxe.lan.company.com/gpg/nodejs.gpg
+
+#d-i apt-setup/local2/repository string deb https://deb.nodesource.com/node_6.x xenial main
+#d-i apt-setup/local2/comment string NodeJS
+#d-i apt-setup/local2/key string http://pxe.lan.company.com/gpg/nodejs.gpg
 
 ### Partitioning
 d-i partman-auto/disk                                       string      /dev/mmcblk0
@@ -128,8 +141,8 @@ d-i debian-installer/exit/halt                              boolean     false
 d-i debian-installer/exit/poweroff                          boolean     false
 
 ### Preseeding other packages
-d-i preseed/late_command string \
-in-target curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -; \
-apt-install nodejs;
+#d-i preseed/late_command string \
+#in-target curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -; \
+#apt-install nodejs;
 
 ### Advanced options
