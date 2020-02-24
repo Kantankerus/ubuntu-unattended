@@ -17,8 +17,8 @@ d-i debconf/language                                        string      en_US:en
 ### Network Settings
 d-i netcfg/choose_interface                                 select      auto
 d-i netcfg/dhcp_timeout                                     string      5
-d-i netcfg/get_hostname                                     string      {{hostname}}
-d-i netcfg/get_domain                                       string      {{hostname}}
+d-i netcfg/get_hostname                                     string      ubuntuhost
+d-i netcfg/get_domain                                       string      omneye.com
 
 ### Mirror setup
 d-i mirror/http/mirror                                      select      us.archive.ubuntu.com
@@ -141,6 +141,6 @@ d-i debian-installer/exit/halt                              boolean     false
 d-i debian-installer/exit/poweroff                          boolean     false
 
 ### Preseeding other packages
-d-i preseed/late_command string apt-install docker-ce nodejs puppet-agent
+d-i preseed/late_command string apt-install docker-ce nodejs puppet-agent; newhost=$(curl -s http://omn-fman01.sfo.omneye.com/newhost); in-target hostnamectl set-hostname $newhost; in-target sed -i "s/ubuntuhost/$newhost/" /etc/hosts
 
 ### Advanced options
