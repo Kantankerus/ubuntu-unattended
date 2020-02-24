@@ -10,6 +10,11 @@ Originally forked from: https://github.com/netson/ubuntu-unattended
 Created by: **Rinck Sonnenberg (Netson)** (Thank you Rinck!)  
 Modified by: Brock Harris (OmnEye Technical Services)  
 
+In addition to the original scope of the software, this script has been customized as follows:
+* Specific support for AcePC AK1 hardware device.
+* Specific configuration customizations for OTS including creation of a hybrid UEFI ISO and customized partitioning scheme.
+* Addition of official repositories for Docker, Nodesource and Puppetlabs.
+
 ## Compatibility
 
 The script supports the following Ubuntu editions out of the box:
