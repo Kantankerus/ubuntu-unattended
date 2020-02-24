@@ -58,13 +58,9 @@ d-i apt-setup/local0/repository string deb [arch=amd64] https://download.docker.
 d-i apt-setup/local0/comment string Docker
 d-i apt-setup/local0/key string https://download.docker.com/linux/ubuntu/gpg
 
-#d-i apt-setup/local1/repository string deb https://deb.nodesource.com/node_13.x bionic main
-#d-i apt-setup/local1/comment string NodeJS
-#d-i apt-setup/local1/key string http://pxe.lan.company.com/gpg/nodejs.gpg
-
-#d-i apt-setup/local2/repository string deb https://deb.nodesource.com/node_6.x xenial main
-#d-i apt-setup/local2/comment string NodeJS
-#d-i apt-setup/local2/key string http://pxe.lan.company.com/gpg/nodejs.gpg
+d-i apt-setup/local1/repository string deb https://deb.nodesource.com/node_13.x bionic main
+d-i apt-setup/local1/comment string NodeJS
+d-i apt-setup/local1/key string https://deb.nodesource.com/gpgkey/nodesource.gpg.key
 
 ### Partitioning
 d-i partman-auto/disk                                       string      /dev/mmcblk0
