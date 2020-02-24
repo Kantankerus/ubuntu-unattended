@@ -71,47 +71,11 @@ tmphtml=$tmp/tmphtml
 rm $tmphtml >/dev/null 2>&1
 wget -O $tmphtml 'http://releases.ubuntu.com/' >/dev/null 2>&1
 
-prec=$(fgrep Precise $tmphtml | head -1 | awk '{print $3}' | sed 's/href=\"//; s/\/\"//')
-trus=$(fgrep Trusty $tmphtml | head -1 | awk '{print $3}' | sed 's/href=\"//; s/\/\"//')
-xenn=$(fgrep Xenial $tmphtml | head -1 | awk '{print $3}' | sed 's/href=\"//; s/\/\"//')
 bion=$(fgrep Bionic $tmphtml | head -1 | awk '{print $3}' | sed 's/href=\"//; s/\/\"//')
-prec_vers=$(fgrep Precise $tmphtml | head -1 | awk '{print $6}')
-trus_vers=$(fgrep Trusty $tmphtml | head -1 | awk '{print $6}')
-xenn_vers=$(fgrep Xenial $tmphtml | head -1 | awk '{print $6}')
 bion_vers=$(fgrep Bionic $tmphtml | head -1 | awk '{print $6}')
-
-
-
-# ask whether to include vmware tools or not
-while true; do
-    echo " which ubuntu edition would you like to remaster:"
-    echo
-    echo "  [1] Ubuntu $prec LTS Server amd64 - Precise Pangolin"
-    echo "  [2] Ubuntu $trus LTS Server amd64 - Trusty Tahr"
-    echo "  [3] Ubuntu $xenn LTS Server amd64 - Xenial Xerus"
-    echo "  [4] Ubuntu $bion LTS Server amd64 - Bionic Beaver"
-    echo
-    read -p " please enter your preference: [1|2|3|4]: " ubver
-    case $ubver in
-        [1]* )  download_file="ubuntu-$prec_vers-server-amd64.iso"           # filename of the iso to be downloaded
-                download_location="http://releases.ubuntu.com/$prec/"     # location of the file to be downloaded
-                new_iso_name="ubuntu-$prec_vers-server-amd64-unattended.iso" # filename of the new iso file to be created
-                break;;
-	[2]* )  download_file="ubuntu-$trus_vers-server-amd64.iso"             # filename of the iso to be downloaded
-                download_location="http://releases.ubuntu.com/$trus/"     # location of the file to be downloaded
-                new_iso_name="ubuntu-$trus_vers-server-amd64-unattended.iso"   # filename of the new iso file to be created
-                break;;
-        [3]* )  download_file="ubuntu-$xenn_vers-server-amd64.iso"
-                download_location="http://releases.ubuntu.com/$xenn/"
-                new_iso_name="ubuntu-$xenn_vers-server-amd64-unattended.iso"
-                break;;
-        [4]* )  download_file="ubuntu-$bion_vers-server-amd64.iso"
-                download_location="http://cdimage.ubuntu.com/releases/$bion/release/"
-                new_iso_name="ubuntu-$bion_vers-server-amd64-unattended.iso"
-                break;;
-        * ) echo " please answer [1], [2], [3] or [4]";;
-    esac
-done
+download_file="ubuntu-$bion_vers-server-amd64.iso"
+download_location="http://cdimage.ubuntu.com/releases/$bion/release/"
+new_iso_name="ubuntu-$bion_vers-server-amd64-unattended.iso"
 
 if [ -f /etc/timezone ]; then
   timezone=`cat /etc/timezone`
@@ -207,13 +171,6 @@ echo en > $tmp/iso_new/isolinux/lang
 #16.04
 #taken from https://github.com/fries/prepare-ubuntu-unattended-install-iso/blob/master/make.sh
 sed -i -r 's/timeout\s+[0-9]+/timeout 1/g' $tmp/iso_new/isolinux/isolinux.cfg
-
-
-# set late command
-
-#   late_command="chroot /target curl -L -o /home/$username/start.sh https://raw.githubusercontent.com/Kantankerus/ubuntu-unattended/master/start.sh ;\
-#     chroot /target chmod +x /home/$username/start.sh ;"
-
 
 
 # copy the ots seed file to the iso
