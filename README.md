@@ -1,25 +1,23 @@
-# Unattended Ubuntu ISO Maker
+# Unattended Ubuntu ISO Maker for OTS
 
-This simple script will create an unattended Ubuntu ISO from start to finish. It will ask you a few questions once, and embed your answers into a remastered ISO file for you to use over and over again.
+This simple script will create an unattended Ubuntu ISO from start to finish, customized for use with an OTS AcePC AK1 device. It will ask you a few questions once, and embed your answers into a remastered ISO file for you to use over and over again.
 
-This script creates a 100% original Ubuntu installation; no additional software is added (aside from the VMWare OSP Tools, which are optional), not even an ```apt-get update``` is performed. You have all the freedom in the world to customize your Ubuntu installation whichever way you see fit. This script just takes the pain out of re-installing Ubuntu over and over again.
+This script creates a 100% original Ubuntu installation; no additional software is added, not even an ```apt-get update``` is performed. You have all the freedom in the world to customize your Ubuntu installation whichever way you see fit. This script just takes the pain out of re-installing Ubuntu over and over again.
 
 Consider using tools like chef or puppet to perform any additional software installations/configurations. 
 
-Created by: **Rinck Sonnenberg (Netson)**
+Originally forked from: https://github.com/netson/ubuntu-unattended
+Created by: **Rinck Sonnenberg (Netson)** (Thank you Rinck!)
+Modified by: Brock Harris (OmnEye Technical Services)
 
 ## Compatibility
 
 The script supports the following Ubuntu editions out of the box:
-
-* Ubuntu 12.04 Server LTS amd64 - Precise Pangolin
-* Ubuntu 14.04 Server LTS amd64 - Trusty Tahr
-* Ubuntu 16.04 Server LTS amd64 - Xenial Xerus
 * Ubuntu 18.04 Server LTS amd64 - Bionic Beaver
 
 Script automatically chooses the latest current image by parsing http://releases.ubuntu.com page.
 
-This script has been tested on and with these three versions as well, but I see no reason why it shouldn't work with other Ubuntu editions. Other editions would require minor changes to the script though.
+This script has been customized to work on Bionic, use on other releases may or may not work as expected. 
 
 ## Usage
 
@@ -38,25 +36,14 @@ $ sudo ./create-unattended-iso.sh
  |            UNATTENDED UBUNTU ISO MAKER            |
  +---------------------------------------------------+
 
- which ubuntu edition would you like to remaster:
-
-  [1] Ubuntu 12.04.4 LTS Server amd64 - Precise Pangolin
-  [2] Ubuntu 14.04.2 LTS Server amd64 - Trusty Tahr
-  [3] Ubuntu 16.04.1 Server LTS amd64 - Xenial Xerus
-
- please enter your preference: [1|2|3]:
-```
-
-* Enter your desired timezone; the default is *Europe/Amsterdam*:
-
-```
  please enter your preferred timezone: Europe/Amsterdam
 ```
+* Enter your desired timezone; the default is *Europe/Amsterdam*:
 
-* Enter your desired username; the default is *netson*:
+* Enter your desired username; the default is *otsadmin*:
 
 ```
- please enter your preferred username: netson
+ please enter your preferred username: otsadmin
 ```
 
 * Enter the password for your user account; the default is *empty*
@@ -77,13 +64,12 @@ $ sudo ./create-unattended-iso.sh
 
 This script does a bunch of stuff, here's the quick walk-through:
 
-* It asks you for your preferences regarding the unattended ISO
-* Downloads the appropriate Ubuntu original ISO straight from the Ubuntu servers; if a file with the exact name exists, it will use that instead (so it won't download it more than once if you are creating several unattended ISO's with different defaults)
-* Downloads the netson preseed file; this file contains all the magic answers to auto-install ubuntu. It uses the following defaults for you (only showing most important, for details, simply check the seed file in this repository):
+* Downloads the latest Bionic Ubuntu original ISO straight from the Ubuntu servers; if a file with the exact name exists, it will use that instead (so it won't download it more than once if you are creating several unattended ISO's with different defaults)
+* Downloads the ots preseed file; this file contains all the magic answers to auto-install ubuntu. It uses the following defaults for you (only showing most important, for details, simply check the seed file in this repository):
  * Language/locale: en_US
  * Keyboard layout: US International
  * Root login disabled (so make sure you write down your default usernames' password!)
- * Partitioning: LVM, full disk, single partition
+ * Partitioning: eMMC specific, LVM, full disk, multiple partitions including UEFI.
 * Install the mkpasswd program (part of the whois package) to generate a hashed version of your password
 * Install the genisoimage program to generate the new ISO file
 * Mount the downloaded ISO image to a temporary folder
@@ -110,6 +96,7 @@ This script does a bunch of stuff, here's the quick walk-through:
 
 ### Once Ubuntu is installed ...
 
+Needs Updated:
 Just fire off the start.sh script in your users' home directory to complete the installation. This will ask you if you would like to add the puppetlabs repositories for puppet and its dependencies and if you would also like to setup the puppet agent
 
 ```$ sudo ~/start.sh``` 
