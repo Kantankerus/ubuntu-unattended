@@ -27,11 +27,7 @@ This script has been customized to work on Bionic, use on other releases may or 
 $ wget https://raw.githubusercontent.com/netson/ubuntu-unattended/master/create-unattended-iso.sh
 $ chmod +x create-unattended-iso.sh
 $ sudo ./create-unattended-iso.sh
-```
 
-* Choose which version you would like to remaster:
-
-```
  +---------------------------------------------------+
  |            UNATTENDED UBUNTU ISO MAKER            |
  +---------------------------------------------------+
