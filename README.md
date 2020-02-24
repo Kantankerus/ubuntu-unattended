@@ -6,9 +6,9 @@ This script creates a 100% original Ubuntu installation; no additional software 
 
 Consider using tools like chef or puppet to perform any additional software installations/configurations. 
 
-Originally forked from: https://github.com/netson/ubuntu-unattended
-Created by: **Rinck Sonnenberg (Netson)** (Thank you Rinck!)
-Modified by: Brock Harris (OmnEye Technical Services)
+Originally forked from: https://github.com/netson/ubuntu-unattended  
+Created by: **Rinck Sonnenberg (Netson)** (Thank you Rinck!)  
+Modified by: Brock Harris (OmnEye Technical Services)  
 
 ## Compatibility
 
