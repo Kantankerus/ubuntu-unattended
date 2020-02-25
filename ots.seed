@@ -19,7 +19,6 @@ d-i netcfg/choose_interface                                 select      auto
 d-i netcfg/dhcp_timeout                                     string      5
 d-i netcfg/get_hostname                                     string      temp-hostname
 d-i netcfg/get_domain                                       string      temp-domain
-d-i netcfg/hostname                                         string      signage
 
 ### Mirror setup
 d-i mirror/http/mirror                                      select      us.archive.ubuntu.com
@@ -142,6 +141,5 @@ d-i debian-installer/exit/halt                              boolean     false
 d-i debian-installer/exit/poweroff                          boolean     false
 
 ### Preseeding other packages
-d-i preseed/late_command string apt-install docker-ce nodejs puppet-agent; newhost=$(curl -s http://omn-fman01.sfo.omneye.com/newhost); in-target hostnamectl set-hostname $newhost; in-target sed -i "s/signage/$newhost/" /etc/hosts
+d-i preseed/late_command                                    string      apt-install docker-ce nodejs puppet-agent; in-target curl -s http://omn-fman01.sfo.omneye.com/post.sh | bash
 
-### Advanced options
