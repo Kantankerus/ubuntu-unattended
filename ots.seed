@@ -19,7 +19,7 @@ d-i netcfg/choose_interface                                 select      auto
 d-i netcfg/dhcp_timeout                                     string      5
 d-i netcfg/get_hostname                                     string      temp-hostname
 d-i netcfg/get_domain                                       string      temp-domain
-d-i netcfg/hostname                                         string      signage.omneye.com
+d-i netcfg/hostname                                         string      signage
 
 ### Mirror setup
 d-i mirror/http/mirror                                      select      us.archive.ubuntu.com
