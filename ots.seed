@@ -141,5 +141,6 @@ d-i debian-installer/exit/halt                              boolean     false
 d-i debian-installer/exit/poweroff                          boolean     false
 
 ### Preseeding other packages
-d-i preseed/late_command                                    string      apt-install docker-ce nodejs puppet-agent; in-target curl -s http://omn-fman01.sfo.omneye.com/post.sh | bash
+d-i preseed/late_command                                    string      apt-install docker-ce nodejs puppet-agent; \
+                                                                        in-target curl -s http://omn-fman01.sfo.omneye.com/post.sh | /bin/bash
 
