@@ -29,7 +29,7 @@ This script has been customized to work on Bionic, use on other releases may or 
 * From your command line, run the following commands:
 
 ```
-$ wget https://raw.githubusercontent.com/netson/ubuntu-unattended/master/create-unattended-iso.sh
+$ wget https://raw.githubusercontent.com/Kantankerus/ubuntu-unattended/master/create-unattended-iso.sh
 $ chmod +x create-unattended-iso.sh
 $ sudo ./create-unattended-iso.sh
 
@@ -98,9 +98,7 @@ This script does a bunch of stuff, here's the quick walk-through:
 ### Once Ubuntu is installed ...
 
 Needs Updated:
-Just fire off the start.sh script in your users' home directory to complete the installation. This will ask you if you would like to add the puppetlabs repositories for puppet and its dependencies and if you would also like to setup the puppet agent
-
-```$ sudo ~/start.sh``` 
+Puppet stuff
 
 ### That's it, enjoy! :)
 
