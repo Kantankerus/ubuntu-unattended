@@ -1,6 +1,6 @@
-# Unattended Ubuntu ISO Maker for OTS
+# Unattended Ubuntu ISO Maker for The Centr
 
-This simple script will create an unattended Ubuntu ISO from start to finish, customized for use with an OTS AcePC AK1 device. It will ask you a few questions once, and embed your answers into a remastered ISO file for you to use over and over again.
+This simple script will create an unattended Ubuntu ISO from start to finish, customized for use with an The Centr AcePC AK1 device. It will ask you a few questions once, and embed your answers into a remastered ISO file for you to use over and over again.
 
 This script creates a 100% original Ubuntu installation; no additional software is added, not even an ```apt-get update``` is performed. You have all the freedom in the world to customize your Ubuntu installation whichever way you see fit. This script just takes the pain out of re-installing Ubuntu over and over again.
 
@@ -8,11 +8,11 @@ Consider using tools like chef or puppet to perform any additional software inst
 
 Originally forked from: https://github.com/netson/ubuntu-unattended  
 Created by: **Rinck Sonnenberg (Netson)** (Thank you Rinck!)  
-Modified by: Brock Harris (OmnEye Technical Services)  
+Modified by: Brock Harris (The Centr)  
 
 In addition to the original scope of the software, this script has been customized as follows:
 * Specific support for AcePC AK1 hardware device.
-* Specific configuration customizations for OTS including creation of a hybrid UEFI ISO and customized partitioning scheme.
+* Specific configuration customizations for The Centr including creation of a hybrid UEFI ISO and customized partitioning scheme.
 * Addition of official repositories for Docker, Nodesource and Puppetlabs.
 
 ## Compatibility
@@ -41,10 +41,10 @@ $ sudo ./create-unattended-iso.sh
 ```
 * Enter your desired timezone; the default is *Europe/Amsterdam*:
 
-* Enter your desired username; the default is *otsadmin*:
+* Enter your desired username; the default is *tcadmin*:
 
 ```
- please enter your preferred username: otsadmin
+ please enter your preferred username: tcadmin
 ```
 
 * Enter the password for your user account; the default is *empty*
@@ -66,7 +66,7 @@ $ sudo ./create-unattended-iso.sh
 This script does a bunch of stuff, here's the quick walk-through:
 
 * Downloads the latest Bionic Ubuntu original ISO straight from the Ubuntu servers; if a file with the exact name exists, it will use that instead (so it won't download it more than once if you are creating several unattended ISO's with different defaults)
-* Downloads the ots preseed file; this file contains all the magic answers to auto-install ubuntu. It uses the following defaults for you (only showing most important, for details, simply check the seed file in this repository):
+* Downloads the thecentr preseed file; this file contains all the magic answers to auto-install ubuntu. It uses the following defaults for you (only showing most important, for details, simply check the seed file in this repository):
  * Language/locale: en_US
  * Keyboard layout: US International
  * Root login disabled (so make sure you write down your default usernames' password!)
