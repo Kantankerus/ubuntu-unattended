@@ -88,7 +88,7 @@ fi
 
 # ask the user questions about his/her preferences
 read -ep " please enter your preferred timezone: " -i "${timezone}" timezone
-read -ep " please enter your preferred username: " -i "otsadmin" username
+read -ep " please enter your preferred username: " -i "tcadmin" username
 read -sp " please enter your preferred password: " password
 printf "\n"
 read -sp " confirm your preferred password: " password2
@@ -117,8 +117,8 @@ if [[ ! -f $tmp/$download_file ]]; then
 	exit 1
 fi
 
-# download ots seed file
-seed_file="ots.seed"
+# download thecentr seed file
+seed_file="thecentr.seed"
 if [[ ! -f $tmp/$seed_file ]]; then
     echo -n " downloading $seed_file: "
     download "https://raw.githubusercontent.com/Kantankerus/ubuntu-unattended/master/$seed_file"
@@ -173,7 +173,7 @@ echo en > $tmp/iso_new/isolinux/lang
 sed -i -r 's/timeout\s+[0-9]+/timeout 1/g' $tmp/iso_new/isolinux/isolinux.cfg
 
 
-# copy the ots seed file to the iso
+# copy the thecentr seed file to the iso
 cp -rT $tmp/$seed_file $tmp/iso_new/preseed/$seed_file
 
 # include firstrun script
@@ -197,17 +197,17 @@ seed_checksum=$(md5sum $tmp/iso_new/preseed/$seed_file)
 
 # add the autoinstall option to the menu
 sed -i "/label install/ilabel autoinstall\n\
-  menu label ^Autoinstall OTS Ubuntu Server\n\
+  menu label ^Autoinstall The Centr Ubuntu Server\n\
   kernel /install/vmlinuz\n\
-  append file=/cdrom/preseed/ubuntu-server.seed DEBCONF_DEBUG=5 initrd=/install/initrd.gz auto=true priority=high preseed/file=/cdrom/preseed/ots.seed preseed/file/checksum=$seed_checksum ---" $tmp/iso_new/isolinux/txt.cfg
+  append file=/cdrom/preseed/ubuntu-server.seed DEBCONF_DEBUG=5 initrd=/install/initrd.gz auto=true priority=high preseed/file=/cdrom/preseed/$seed_file preseed/file/checksum=$seed_checksum ---" $tmp/iso_new/isolinux/txt.cfg
   
 # add the autoinstall option to the menu for USB Boot
-sed -i '/set timeout=30/amenuentry "Autoinstall OTS Ubuntu Server" {\n\	set gfxpayload=keep\n\	linux /install/vmlinuz append file=/cdrom/preseed/ubuntu-server.seed DEBCONF_DEBUG=5 initrd=/install/initrd.gz auto=true priority=high preseed/file=/cdrom/preseed/ots.seed quiet ---\n\	initrd	/install/initrd.gz\n\}' $tmp/iso_new/boot/grub/grub.cfg
+sed -i '/set timeout=30/amenuentry "Autoinstall The Centr Ubuntu Server" {\n\	set gfxpayload=keep\n\	linux /install/vmlinuz append file=/cdrom/preseed/ubuntu-server.seed DEBCONF_DEBUG=5 initrd=/install/initrd.gz auto=true priority=high preseed/file=/cdrom/preseed/$seed_file quiet ---\n\	initrd	/install/initrd.gz\n\}' $tmp/iso_new/boot/grub/grub.cfg
 sed -i -r 's/timeout=[0-9]+/timeout=1/g' $tmp/iso_new/boot/grub/grub.cfg
 
 echo " creating the remastered iso"
 cd $tmp/iso_new
-(mkisofs -D -r -V "OTS_UBUNTU" -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -eltorito-alt-boot -e boot/grub/efi.img -no-emul-boot -o $tmp/$new_iso_name . > /dev/null 2>&1) &
+(mkisofs -D -r -V "THECENTR_UBUNTU" -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -eltorito-alt-boot -e boot/grub/efi.img -no-emul-boot -o $tmp/$new_iso_name . > /dev/null 2>&1) &
 spinner $!
 
 # make iso bootable (for dd'ing to  USB stick)
